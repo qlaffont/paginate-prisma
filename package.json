@@ -1,0 +1,82 @@
+{
+  "version": "0.1.0",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "engines": {
+    "node": ">=10"
+  },
+  "scripts": {
+    "dev": "wds example/server.ts",
+    "start": "tsdx watch",
+    "build": "tsdx build",
+    "test": "tsdx test",
+    "lint": "eslint src test",
+    "prepare": "tsdx build",
+    "size": "size-limit",
+    "analyze": "size-limit --why"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pnpm lint"
+    }
+  },
+  "prettier": {
+    "printWidth": 80,
+    "semi": true,
+    "singleQuote": true,
+    "trailingComma": "es5"
+  },
+  "name": "paginate-prisma",
+  "author": "flexper",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/flexper/paginate-prisma.git"
+  },
+  "bugs": {
+    "url": "https://github.com/flexper/paginate-prisma/issues",
+    "email": "contact@flexper.fr"
+  },
+  "module": "dist/paginate-prisma.esm.js",
+  "size-limit": [
+    {
+      "path": "dist/paginate-prisma.cjs.production.min.js",
+      "limit": "10 KB"
+    },
+    {
+      "path": "dist/paginate-prisma.esm.js",
+      "limit": "10 KB"
+    }
+  ],
+  "dependencies": {
+  },
+  "jest": {
+    "collectCoverage": true,
+    "coverageReporters": [
+      "lcov"
+    ]
+  },
+  "devDependencies": {
+    "@types/node": "18.0.6",
+    "@jest/globals": "28.1.3",
+    "@size-limit/preset-small-lib": "7.0.8",
+    "husky": "8.0.1",
+    "@typescript-eslint/eslint-plugin": "5.30.7",
+    "@typescript-eslint/parser": "5.30.7",
+    "eslint": "8.20.0",
+    "eslint-config-prettier": "8.5.0",
+    "eslint-plugin-import": "2.26.0",
+    "eslint-plugin-prettier": "4.2.1",
+    "eslint-plugin-simple-import-sort": "7.0.0",
+    "prettier": "2.7.1",
+    "size-limit": "7.0.8",
+    "tsdx": "0.14.1",
+    "tslib": "2.4.0",
+    "typescript": "4.7.4",
+    "wds": "0.13.2"
+  }
+}
