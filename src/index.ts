@@ -1,50 +1,82 @@
-import { Prisma, PrismaClient } from 'prisma';
+import { set } from 'lodash';
 
-const prisma = new PrismaClient();
+import { PaginationOptions } from './types/Pagination';
 
-export interface PageArgs<T> {
-  number?: number;
-  size?: number;
-  sortColumn?: keyof T;
-  sortOrder?: Order;
-}
+export const getPaginationsData = <T>(options: PaginationOptions<T> = {}) =>
+  ({
+    page: options.page || 1,
+    limit: options.limit || 10,
+  } as { page: number; limit: number });
 
-export type Order = 'asc' | 'desc';
-
-export type RespositoryName = Lowercase<Prisma.ModelName>;
-export type Repository<T extends RespositoryName> = typeof prisma[T];
-
-interface PrismaArgs {
-  take?: number;
-  skip?: number;
-  orderBy?: { [x: string]: Order };
-}
-
-export const paginate = async <T extends { id: string }>(
-  repo: RespositoryName,
-  query: Parameters<Repository<typeof repo>['findMany']>[0],
-  pageArgs: PageArgs<T> = {}
-) => {
-  const parsePageArgsToPrisma = (pageArgs: PageArgs<T>) => {
-    const { number, size, sortColumn, sortOrder } = pageArgs;
-    const toReturn: PrismaArgs = {};
-
-    if (number) toReturn.skip = number;
-    if (size) toReturn.take = size;
-
-    const order: Order = sortOrder || 'asc';
-    const column: keyof T = sortColumn || 'id';
-
-    toReturn.orderBy = {
-      [column]: order,
-    };
-
-    return toReturn;
-  };
-
-  return prisma[repo].findMany({
-    /** @see: https://stackoverflow.com/a/51193091 */
-    ...Object.assign({}, query),
-    ...parsePageArgsToPrisma(pageArgs),
+export async function paginate<PrismaClient, T>(
+  model: Exclude<
+    keyof PrismaClient,
+    | '$on'
+    | '$connect'
+    | '$disconnect'
+    | '$use'
+    | '$executeRaw'
+    | '$executeRawUnsafe'
+    | '$queryRaw'
+    | '$queryRawUnsafe'
+    | '$transaction'
+  >,
+  query: Exclude<
+    Parameters<PrismaClient[typeof model]['findMany']>[0],
+    undefined
+  >['where'],
+  //TODO: Refacto to use dot notation to full indexation (see rosetty)
+  options: PaginationOptions<keyof T> = {},
+  additionalPrismaQuery: Omit<
+    Exclude<Parameters<PrismaClient[typeof model]['findMany']>[0], undefined>,
+    'where' | 'skip' | 'take' | 'orderBy'
+  > = {}
+) {
+  const { page, limit } = getPaginationsData<T>({
+    page: options?.page,
+    limit: options?.limit,
   });
-};
+
+  let orderBy = {};
+
+  if (options.sort?.field) {
+    const field = options.sort?.field;
+
+    if ((field as string).indexOf('.') === -1) {
+      orderBy = {
+        [options.sort?.field]: options.sort?.order.toLowerCase(),
+      };
+    } else {
+      const orderByValue = {};
+
+      set(orderByValue, field, options.sort?.order.toLowerCase());
+      orderBy = orderByValue;
+    }
+  }
+
+  //@ts-ignore
+  const data: T[] = await prisma[model].findMany({
+    where: query,
+    ...(options?.disablePagination
+      ? {}
+      : { skip: (page - 1) * limit, orderBy, take: limit }),
+    ...additionalPrismaQuery,
+  });
+
+  //@ts-ignore
+  const items = await prisma[model].count({
+    where: query,
+  });
+
+  const pages = options?.disablePagination
+    ? 0
+    : Math.ceil((items || 0) / limit);
+
+  return {
+    data,
+    pages,
+    page,
+    limit,
+    items,
+  };
+}
