@@ -71,7 +71,7 @@
     "eslint-plugin-simple-import-sort": "7.0.0",
     "husky": "8.0.1",
     "prettier": "2.7.1",
-    "prisma": "^4.2.1",
+    "prisma": "4.5.0",
     "size-limit": "7.0.8",
     "tsdx": "0.14.1",
     "tslib": "2.4.0",

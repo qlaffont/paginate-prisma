@@ -16,7 +16,7 @@ specifiers:
   husky: 8.0.1
   lodash: ^4.17.21
   prettier: 2.7.1
-  prisma: ^4.2.1
+  prisma: 4.5.0
   size-limit: 7.0.8
   tsdx: 0.14.1
   tslib: 2.4.0
@@ -43,7 +43,7 @@ devDependencies:
   eslint-plugin-simple-import-sort: 7.0.0_eslint@8.20.0
   husky: 8.0.1
   prettier: 2.7.1
-  prisma: 4.2.1
+  prisma: 4.5.0
   size-limit: 7.0.8
   tsdx: 0.14.1_@types+node@18.0.6
   tslib: 2.4.0
@@ -1653,8 +1653,8 @@ packages:
       fastq: 1.13.0
     dev: true
 
-  /@prisma/engines/4.2.1:
-    resolution: {integrity: sha512-0KqBwREUOjBiHwITsQzw2DWfLHjntvbqzGRawj4sBMnIiL5CXwyDUKeHOwXzKMtNr1rEjxEsypM14g0CzLRK3g==}
+  /@prisma/engines/4.5.0:
+    resolution: {integrity: sha512-4t9ir2SbQQr/wMCNU4YpHWp5hU14J2m3wHUZnGJPpmBF8YtkisxyVyQsKd1e6FyLTaGq8LOLhm6VLYHKqKNm+g==}
     requiresBuild: true
     dev: true
 
@@ -6814,13 +6814,13 @@ packages:
       react-is: 18.2.0
     dev: true
 
-  /prisma/4.2.1:
-    resolution: {integrity: sha512-HuYqnTDgH8atjPGtYmY0Ql9XrrJnfW7daG1PtAJRW0E6gJxc50lY3vrIDn0yjMR3TvRlypjTcspQX8DT+xD4Sg==}
+  /prisma/4.5.0:
+    resolution: {integrity: sha512-9Aeg4qiKlv9Wsjz4NO8k2CzRzlvS3A4FYVJ5+28sBBZ0eEwbiVOE/Jj7v6rZC1tFW2s4GSICQOAyuOjc6WsNew==}
     engines: {node: '>=14.17'}
     hasBin: true
     requiresBuild: true
     dependencies:
-      '@prisma/engines': 4.2.1
+      '@prisma/engines': 4.5.0
     dev: true
 
   /progress-estimator/0.2.2:
