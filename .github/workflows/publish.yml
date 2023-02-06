@@ -16,42 +16,87 @@ jobs:
         node: ["16.x"]
         os: [ubuntu-latest]
 
+    services:
+      postgres:
+        image: postgres
+        env:
+          POSTGRES_USER: docker
+          POSTGRES_PASSWORD: docker
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+
     steps:
+      - uses: dorny/paths-filter@v2
+        id: changes
+        with:
+          filters: |
+            src:
+              - 'src/**'
+              - 'package.json'
+              - 'pnpm-lock.yaml'
       - name: Checkout repo
+        if: steps.changes.outputs.src == 'true'
         uses: actions/checkout@v3
 
-      - run: |
+      - if: steps.changes.outputs.src == 'true'
+        run: |
           git config user.name "${{ secrets.USER_NAME }}"
           git config user.email "${{ secrets.USER_EMAIL }}"
+
       - name: Use Node ${{ matrix.node }}
+        if: steps.changes.outputs.src == 'true'
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node }}
 
       - name: Install PNPM
-        uses: pnpm/action-setup@v2.2.2
+        if: steps.changes.outputs.src == 'true'
+        uses: pnpm/action-setup@v2.2.4
         with:
           version: 6.0.2
 
       - name: Install deps and build (with cache)
-        run: pnpm install
+        if: steps.changes.outputs.src == 'true'
+        run: pnpm install --no-frozen-lockfile
+
+      - if: steps.changes.outputs.src == 'true'
+        run: pnpm prisma:generate
 
       - name: Lint
+        if: steps.changes.outputs.src == 'true'
         run: pnpm lint
 
+      - if: steps.changes.outputs.src == 'true'
+        run: pnpm prisma:deploy
+
       - name: Test
+        if: steps.changes.outputs.src == 'true'
         run: pnpm test -- --ci --coverage --maxWorkers=2
 
       - name: Build
+        if: steps.changes.outputs.src == 'true'
         run: pnpm build
 
       - name: Bump version
+        if: steps.changes.outputs.src == 'true'
         uses: qzb/standard-version-action@v1.0.7
 
-      - run: |
+
+
+      - if: steps.changes.outputs.src == 'true'
+        run: |
           git config --global user.name "${{ secrets.USER_NAME }}"
           git config --global user.email "${{ secrets.USER_EMAIL }}"
           git push --follow-tags origin main
-      - uses: JS-DevTools/npm-publish@v1
+
+      - if: steps.changes.outputs.src == 'true'
+        uses: JS-DevTools/npm-publish@v1
         with:
           token: ${{ secrets.NPM_TOKEN }}
+
+

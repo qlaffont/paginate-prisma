@@ -11,14 +11,15 @@
     "node": ">=10"
   },
   "scripts": {
-    "dev": "wds example/server.ts",
     "start": "tsdx watch",
     "build": "tsdx build",
     "test": "tsdx test",
-    "lint": "eslint src test",
-    "prepare": "tsdx build",
+    "lint": "eslint src test --fix",
     "size": "size-limit",
-    "analyze": "size-limit --why"
+    "analyze": "size-limit --why",
+    "np": "np",
+    "prisma:deploy": "prisma migrate deploy",
+    "prisma:generate": "prisma generate"
   },
   "husky": {
     "hooks": {
@@ -60,6 +61,7 @@
   },
   "devDependencies": {
     "@jest/globals": "29.4.1",
+    "@prisma/client": "^4.9.0",
     "@size-limit/preset-small-lib": "8.1.2",
     "@types/node": "18.11.19",
     "@typescript-eslint/eslint-plugin": "5.50.0",
@@ -69,9 +71,11 @@
     "eslint-plugin-import": "2.27.5",
     "eslint-plugin-prettier": "4.2.1",
     "eslint-plugin-simple-import-sort": "10.0.0",
+    "graphql": "^16.6.0",
     "husky": "8.0.3",
     "prettier": "2.8.3",
     "prisma": "^4.9.0",
+    "reflect-metadata": "^0.1.13",
     "size-limit": "7.0.8",
     "tsdx": "0.14.1",
     "tslib": "2.5.0",

@@ -20,23 +20,23 @@ export const paginate =
   async (
     query: Exclude<
       Exclude<
-        Parameters<typeof prismaModel['findMany']>[0],
+        Parameters<(typeof prismaModel)['findMany']>[0],
         undefined
       >['where'],
       undefined
-    >,
+    > = {},
     paginateOptions: PaginationOptions<
       KeysOfUnion<
         extractGeneric<
           Exclude<
-            Parameters<typeof prismaModel['findMany']>[0],
+            Parameters<(typeof prismaModel)['findMany']>[0],
             undefined
           >['orderBy']
         >
       >
     > = {},
     additionalPrismaQuery: Omit<
-      Exclude<Parameters<typeof prismaModel['findMany']>[0], undefined>,
+      Exclude<Parameters<(typeof prismaModel)['findMany']>[0], undefined>,
       'where' | 'skip' | 'take' | 'orderBy'
     > = {}
   ) => {
@@ -63,13 +63,13 @@ export const paginate =
       }
     }
 
-    const data = await prismaModel.findMany({
+    const data = await (prismaModel.findMany({
       where: query,
       ...(paginateOptions?.disablePagination
         ? {}
         : { skip: (page - 1) * limit, orderBy, take: limit }),
       ...additionalPrismaQuery,
-    });
+    }) as ReturnType<(typeof prismaModel)['findMany']>);
 
     const items = await prismaModel.count({
       where: query,

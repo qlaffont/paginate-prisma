@@ -7,8 +7,22 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        node: ['16.x']
-        os: [ubuntu-latest, macOS-latest]
+        node: ["16.x", "17.x"]
+        os: [ubuntu-latest]
+
+    services:
+      postgres:
+        image: postgres
+        env:
+          POSTGRES_USER: docker
+          POSTGRES_PASSWORD: docker
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
 
     steps:
       - name: Checkout repo
@@ -20,36 +34,57 @@ jobs:
           node-version: ${{ matrix.node }}
 
       - name: Install PNPM
-        uses: pnpm/action-setup@v2.2.2
+        uses: pnpm/action-setup@v2.2.4
         with:
           version: 6.0.2
 
       - name: Install deps and build (with cache)
-        run: pnpm install
+        run: pnpm install --no-frozen-lockfile
+
+      - run: pnpm prisma:generate
 
       - name: Lint
         run: pnpm lint
+
+      - run: pnpm prisma:deploy
 
       - name: Test
         run: pnpm test -- --ci --coverage --maxWorkers=2
 
       - name: Build
         run: pnpm build
-
   coverage:
     name: coverage
     runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres
+        env:
+          POSTGRES_USER: docker
+          POSTGRES_PASSWORD: docker
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
-          node-version: "16"
-      - uses: pnpm/action-setup@v2.2.2
+          node-version: "17"
+      - uses: pnpm/action-setup@v2.2.4
         with:
           version: 6.0.2
-      - run: pnpm install
+      - name: Install deps and build (with cache)
+        run: pnpm install --no-frozen-lockfile
+      - run: pnpm prisma:generate
+      - run: pnpm prisma:deploy
       - run: pnpm test
-      - uses: paambaati/codeclimate-action@v3.0.0
+      - uses: paambaati/codeclimate-action@v3.2.0
         env:
           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
         with:

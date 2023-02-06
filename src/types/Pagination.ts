@@ -2,6 +2,7 @@ import { Max, Min } from 'class-validator';
 import {
   Field,
   InputType,
+  Int,
   InterfaceType,
   registerEnumType,
 } from 'type-graphql';
@@ -27,15 +28,15 @@ export class PaginationOrder<T> {
 @InputType()
 export class PaginationOptions<T> {
   @Min(1)
-  @Field({ defaultValue: 1, nullable: true })
+  @Field(() => Int, { defaultValue: 1, nullable: true })
   page?: number;
 
-  @Field({ defaultValue: false, nullable: true })
+  @Field(() => Boolean, { defaultValue: false, nullable: true })
   disablePagination?: boolean;
 
   @Min(1)
   @Max(20)
-  @Field({ defaultValue: 10, nullable: true })
+  @Field(() => Int, { defaultValue: 10, nullable: true })
   limit?: number;
 
   @Field(() => PaginationOrder, { nullable: true })
@@ -44,15 +45,15 @@ export class PaginationOptions<T> {
 
 @InterfaceType()
 export class PaginationResult {
-  @Field()
+  @Field(() => Int)
   page!: number;
 
-  @Field()
+  @Field(() => Int)
   pages!: number;
 
-  @Field()
+  @Field(() => Int)
   limit!: number;
 
-  @Field()
+  @Field(() => Int)
   items!: number;
 }
