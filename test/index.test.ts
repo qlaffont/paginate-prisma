@@ -39,9 +39,6 @@ describe('Paginate function', () => {
       }
     );
 
-    console.log(prismaResult);
-    console.log(libResult);
-
     expect(prismaResult[0]).toEqual(libResult.data[0]);
     expect(prismaResult[1]).toEqual(libResult.data[1]);
   });
