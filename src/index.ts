@@ -1,3 +1,5 @@
+//@ts-nocheck
+
 import { set } from 'lodash';
 
 import { PaginationOptions } from './types/Pagination';
@@ -8,75 +10,103 @@ export const getPaginationsData = <T>(options: PaginationOptions<T> = {}) =>
     limit: options.limit || 10,
   } as { page: number; limit: number });
 
-export async function paginate<PrismaClient, T>(
-  model: Exclude<
-    keyof PrismaClient,
-    | '$on'
-    | '$connect'
-    | '$disconnect'
-    | '$use'
-    | '$executeRaw'
-    | '$executeRawUnsafe'
-    | '$queryRaw'
-    | '$queryRawUnsafe'
-    | '$transaction'
-  >,
-  query: Exclude<
-    Parameters<PrismaClient[typeof model]['findMany']>[0],
-    undefined
-  >['where'],
-  //TODO: Refacto to use dot notation to full indexation (see rosetty)
-  options: PaginationOptions<keyof T> = {},
-  additionalPrismaQuery: Omit<
-    Exclude<Parameters<PrismaClient[typeof model]['findMany']>[0], undefined>,
-    'where' | 'skip' | 'take' | 'orderBy'
-  > = {}
-) {
-  const { page, limit } = getPaginationsData<T>({
-    page: options?.page,
-    limit: options?.limit,
-  });
+type BreakDownObject<O, R = void> = {
+  [K in keyof O as string]: K extends string
+    ? R extends string
+      ? ObjectDotNotation<O[K], `${R}.${K}`>
+      : ObjectDotNotation<O[K], K>
+    : never;
+};
 
-  let orderBy = {};
+type ObjectDotNotation<O, R = void> = O extends string
+  ? R extends string
+    ? R
+    : never
+  : BreakDownObject<O, R>[keyof BreakDownObject<O, R>];
 
-  if (options.sort?.field) {
-    const field = options.sort?.field;
+type TypeWithGeneric<T> = T[];
+type extractGeneric<Type> = Type extends TypeWithGeneric<infer X> ? X : never;
 
-    if ((field as string).indexOf('.') === -1) {
-      orderBy = {
-        [options.sort?.field]: options.sort?.order.toLowerCase(),
-      };
-    } else {
-      const orderByValue = {};
+type KeysOfUnion<T> = T extends T ? keyof T : never;
 
-      set(orderByValue, field, options.sort?.order.toLowerCase());
-      orderBy = orderByValue;
+export const paginate =
+  <T>(prismaModel: T) =>
+  async (
+    query: Exclude<
+      Exclude<
+        Parameters<typeof prismaModel['findMany']>[0],
+        undefined
+      >['where'],
+      undefined
+    >,
+    paginateOptions: PaginationOptions<
+      KeysOfUnion<
+        extractGeneric<
+          Exclude<
+            Parameters<typeof prismaModel['findMany']>[0],
+            undefined
+          >['orderBy']
+        >
+      >
+    > = {},
+    additionalPrismaQuery: Omit<
+      Exclude<Parameters<typeof prismaModel['findMany']>[0], undefined>,
+      'where' | 'skip' | 'take' | 'orderBy'
+    > = {}
+  ) => {
+    // type ty = extractGeneric<
+    //   Exclude<
+    //     Parameters<typeof prisma[typeof model]['findMany']>[0],
+    //     undefined
+    //   >['orderBy']
+    // >;
+
+    // const test: keyof Required<ty> = '';
+
+    const { page, limit } = getPaginationsData<typeof paginateOptions>({
+      page: paginateOptions?.page,
+      limit: paginateOptions?.limit,
+    });
+
+    let orderBy = {};
+
+    if (paginateOptions.sort?.field) {
+      const field = paginateOptions.sort?.field;
+
+      if ((field as string).indexOf('.') === -1) {
+        orderBy = {
+          [paginateOptions.sort?.field]:
+            paginateOptions.sort?.order.toLowerCase(),
+        };
+      } else {
+        const orderByValue = {};
+
+        set(orderByValue, field, paginateOptions.sort?.order.toLowerCase());
+        orderBy = orderByValue;
+      }
     }
-  }
 
-  //@ts-ignore
-  const data: T[] = await prisma[model].findMany({
-    where: query,
-    ...(options?.disablePagination
-      ? {}
-      : { skip: (page - 1) * limit, orderBy, take: limit }),
-    ...additionalPrismaQuery,
-  });
+    const data = await prismaModel.findMany({
+      where: query,
+      ...(paginateOptions?.disablePagination
+        ? {}
+        : { skip: (page - 1) * limit, orderBy, take: limit }),
+      ...additionalPrismaQuery,
+    });
 
-  //@ts-ignore
-  const items = await prisma[model].count({
-    where: query,
-  });
+    const items = await prismaModel.count({
+      where: query,
+    });
 
-  const pages = options?.disablePagination
-    ? 0
-    : Math.ceil((items || 0) / limit);
+    const pages = paginateOptions?.disablePagination
+      ? 0
+      : Math.ceil((items || 0) / limit);
 
-  return {
-    data,
-    pages,
-    page,
-    limit,
-    items,
+    return {
+      data,
+      pages,
+      page,
+      limit,
+      items,
+    };
   };
-}
