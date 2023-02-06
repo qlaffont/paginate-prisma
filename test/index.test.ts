@@ -14,9 +14,6 @@ import { PAGINATION_ORDER } from '../src/types/Pagination';
 
 const prisma = new PrismaClient();
 
-//TODO: add Seeding
-//TODO: Check coverage
-
 describe('Paginate function', () => {
   beforeAll(() => {
     // return seeding();
