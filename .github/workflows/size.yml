@@ -7,7 +7,7 @@ jobs:
       CI_JOB_NUMBER: 1
     steps:
       - name: Install PNPM
-        uses: pnpm/action-setup@v2.2.2
+        uses: pnpm/action-setup@v2.2.4
         with:
           version: 6.0.2
       - uses: actions/checkout@v3
