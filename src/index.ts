@@ -10,20 +10,6 @@ export const getPaginationsData = <T>(options: PaginationOptions<T> = {}) =>
     limit: options.limit || 10,
   } as { page: number; limit: number });
 
-type BreakDownObject<O, R = void> = {
-  [K in keyof O as string]: K extends string
-    ? R extends string
-      ? ObjectDotNotation<O[K], `${R}.${K}`>
-      : ObjectDotNotation<O[K], K>
-    : never;
-};
-
-type ObjectDotNotation<O, R = void> = O extends string
-  ? R extends string
-    ? R
-    : never
-  : BreakDownObject<O, R>[keyof BreakDownObject<O, R>];
-
 type TypeWithGeneric<T> = T[];
 type extractGeneric<Type> = Type extends TypeWithGeneric<infer X> ? X : never;
 
@@ -54,15 +40,6 @@ export const paginate =
       'where' | 'skip' | 'take' | 'orderBy'
     > = {}
   ) => {
-    // type ty = extractGeneric<
-    //   Exclude<
-    //     Parameters<typeof prisma[typeof model]['findMany']>[0],
-    //     undefined
-    //   >['orderBy']
-    // >;
-
-    // const test: keyof Required<ty> = '';
-
     const { page, limit } = getPaginationsData<typeof paginateOptions>({
       page: paginateOptions?.page,
       limit: paginateOptions?.limit,
