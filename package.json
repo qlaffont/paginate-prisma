@@ -59,6 +59,11 @@
       "lcov"
     ]
   },
+  "pnpm": {
+    "overrides": {
+      "typescript": "4.9.5"
+    }
+  },
   "devDependencies": {
     "@jest/globals": "29.4.1",
     "@prisma/client": "^4.9.0",

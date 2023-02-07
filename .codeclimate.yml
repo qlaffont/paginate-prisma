@@ -2,3 +2,4 @@ exclude_patterns:
 - "example/server.ts"
 - "test"
 - "src/types/Pagination.ts"
+- "src/types.ts"

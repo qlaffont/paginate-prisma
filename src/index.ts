@@ -1,8 +1,6 @@
-//@ts-nocheck
-
 import { set } from 'lodash';
 
-import { PaginationOptions } from './types';
+import { extractGeneric, ObjectDotNotation, PaginationOptions } from './typing';
 
 export const getPaginationsData = <T>(options: PaginationOptions<T> = {}) =>
   ({
@@ -10,48 +8,34 @@ export const getPaginationsData = <T>(options: PaginationOptions<T> = {}) =>
     limit: options.limit || 10,
   } as { page: number; limit: number });
 
-type TypeWithGeneric<T> = T[];
-type extractGeneric<Type> = Type extends TypeWithGeneric<infer X> ? X : never;
-
-type PathsToStringProps<T> = T extends string
-  ? []
-  : {
-      [K in Extract<keyof T, string>]: [K, ...PathsToStringProps<T[K]>];
-    }[Extract<keyof T, string>];
-
-type Join<T extends string[], D extends string> = T extends []
-  ? never
-  : T extends [infer F]
-  ? F
-  : T extends [infer F, ...infer R]
-  ? F extends string
-    ? `${F}${D}${Join<Extract<R, string[]>, D>}`
-    : never
-  : string;
-
-type DottedLanguageObjectStringPaths<T> = Join<PathsToStringProps<T>, '.'>;
-
 export const paginate =
   <T>(prismaModel: T) =>
   async (
+    //@ts-ignore
     query: Exclude<
+      //@ts-ignore
       Exclude<
+        //@ts-ignore
         Parameters<(typeof prismaModel)['findMany']>[0],
         undefined
       >['where'],
       undefined
     > = {},
     paginateOptions: PaginationOptions<
-      DottedLanguageObjectStringPaths<
+      ObjectDotNotation<
         extractGeneric<
+          //@ts-ignore
           Exclude<
+            //@ts-ignore
             Parameters<(typeof prismaModel)['findMany']>[0],
             undefined
           >['orderBy']
         >
       >
     > = {},
+    //@ts-ignore
     additionalPrismaQuery: Omit<
+      //@ts-ignore
       Exclude<Parameters<(typeof prismaModel)['findMany']>[0], undefined>,
       'where' | 'skip' | 'take' | 'orderBy'
     > = {}
@@ -68,25 +52,28 @@ export const paginate =
 
       if ((field as string).indexOf('.') === -1) {
         orderBy = {
+          //@ts-ignore
           [paginateOptions.sort?.field]:
             paginateOptions.sort?.order.toLowerCase(),
         };
       } else {
         const orderByValue = {};
-
+        //@ts-ignore
         set(orderByValue, field, paginateOptions.sort?.order.toLowerCase());
         orderBy = orderByValue;
       }
     }
-
+    //@ts-ignore
     const data = await (prismaModel.findMany({
       where: query,
       ...(paginateOptions?.disablePagination
         ? {}
         : { skip: (page - 1) * limit, orderBy, take: limit }),
       ...additionalPrismaQuery,
+      //@ts-ignore
     }) as ReturnType<(typeof prismaModel)['findMany']>);
 
+    //@ts-ignore
     const items = await prismaModel.count({
       where: query,
     });
