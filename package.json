@@ -65,7 +65,7 @@
     }
   },
   "devDependencies": {
-    "@jest/globals": "29.4.1",
+    "@jest/globals": "29.4.2",
     "@prisma/client": "^4.9.0",
     "@size-limit/preset-small-lib": "8.1.2",
     "@types/node": "18.13.0",
