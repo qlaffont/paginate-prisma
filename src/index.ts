@@ -2,7 +2,7 @@
 
 import { set } from 'lodash';
 
-import { PaginationOptions } from './types/Pagination';
+import { PaginationOptions } from './types';
 
 export const getPaginationsData = <T>(options: PaginationOptions<T> = {}) =>
   ({

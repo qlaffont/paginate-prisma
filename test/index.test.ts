@@ -9,7 +9,7 @@ import { describe, expect, it } from '@jest/globals';
 
 import { PrismaClient } from '../prisma/generated/prisma-client-lib.ts';
 import { paginate } from '../src/index';
-import { PAGINATION_ORDER } from '../src/types/Pagination';
+import { PAGINATION_ORDER } from '../src/types';
 import { cleanSeeding, seeding } from './utils/seeding';
 
 const prisma = new PrismaClient();

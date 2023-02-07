@@ -8,26 +8,62 @@ A TS plugin wrapping pagination for Prisma ORM
 ## Install
 
 ```sh
-npm i paginate-prisma
-# Or
-yarn add paginate-prisma
-# Or
-pnpm add paginate-prisma
+pnpm i paginate-prisma
 ```
 
 ## Use
 
 ```typescript
+import { paginate } from 'paginate-prisma';
+import { PAGINATION_ORDER } from 'paginate-prisma/types';
+
+const prisma = new PrismaClient();
+await paginate(prisma.user)(
+  {},
+  {
+    sort: {
+      field: 'tokens._count',
+      order: PAGINATION_ORDER.ASC,
+    },
+  }
+);
 ```
 
-## Tests
+## API
 
-To execute jest tests (all errors, type integrity test)
+### paginate(prismaModel)(query, sortingOptions, additionalFindMany)
 
-```
+**Options**
+
+| Field Name         | Type                    | Description                                        |
+| ------------------ | ----------------------- | -------------------------------------------------- |
+| prismaModel        | Prisma Model            | Prisma model/table/entity to use                   |
+| sortingOptions     | PaginationOptions       | Options to use for pagination (Page, sorting, etc) |
+| additionalFindMany | Prisma FindManyArgument | Other params in findMany as include, cursor, etc   |
+
+**Return** `Promise<PaginationResult & {data: T[]}>`
+
+| Field Name | Type   | Description                  |
+| ---------- | ------ | ---------------------------- |
+| data       | T[]    | Paginated Data               |
+| page       | number | Current page                 |
+| pages      | number | Total number of pages        |
+| limit      | number | Number of row to be returned |
+| items      | number | Total number of items        |
+
+## Test
+
+To test this package, you need to run a PostgresSQL server :
+
+```bash
+
+docker-compose up -d
+chmod -R 777 docker
+pnpm prisma migrate deploy
 pnpm test
 ```
 
 ## Maintain
 
 This package use [TSdx](https://github.com/jaredpalmer/tsdx). Please check documentation to update this package.
+
