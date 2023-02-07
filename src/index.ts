@@ -13,7 +13,23 @@ export const getPaginationsData = <T>(options: PaginationOptions<T> = {}) =>
 type TypeWithGeneric<T> = T[];
 type extractGeneric<Type> = Type extends TypeWithGeneric<infer X> ? X : never;
 
-type KeysOfUnion<T> = T extends T ? keyof T : never;
+type PathsToStringProps<T> = T extends string
+  ? []
+  : {
+      [K in Extract<keyof T, string>]: [K, ...PathsToStringProps<T[K]>];
+    }[Extract<keyof T, string>];
+
+type Join<T extends string[], D extends string> = T extends []
+  ? never
+  : T extends [infer F]
+  ? F
+  : T extends [infer F, ...infer R]
+  ? F extends string
+    ? `${F}${D}${Join<Extract<R, string[]>, D>}`
+    : never
+  : string;
+
+type DottedLanguageObjectStringPaths<T> = Join<PathsToStringProps<T>, '.'>;
 
 export const paginate =
   <T>(prismaModel: T) =>
@@ -26,7 +42,7 @@ export const paginate =
       undefined
     > = {},
     paginateOptions: PaginationOptions<
-      KeysOfUnion<
+      DottedLanguageObjectStringPaths<
         extractGeneric<
           Exclude<
             Parameters<(typeof prismaModel)['findMany']>[0],

@@ -22,3 +22,11 @@ export const seeding = async () => {
     },
   });
 };
+
+export const cleanSeeding = async () => {
+  const prisma = new PrismaClient();
+
+  await prisma.user.deleteMany({
+    where: {},
+  });
+};
