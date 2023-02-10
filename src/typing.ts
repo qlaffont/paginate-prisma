@@ -76,3 +76,16 @@ export type ObjectDotNotation<O, R = void> = O extends string
     ? R
     : never
   : BreakDownObject<O, R>[keyof BreakDownObject<O, R>];
+
+export type PaginationOptionsFromPrisma<T> = PaginationOptions<
+  ObjectDotNotation<
+    extractGeneric<
+      //@ts-ignore
+      Exclude<
+        //@ts-ignore
+        Parameters<T['findMany']>[0],
+        undefined
+      >['orderBy']
+    >
+  >
+>;

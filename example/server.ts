@@ -1,7 +1,7 @@
 //@ts-nocheck
 
 import { paginate } from 'paginate-prisma';
-import { PAGINATION_ORDER } from 'paginate-prisma/types';
+import { PAGINATION_ORDER } from 'paginate-prisma/dist/typing';
 
 const prisma = new PrismaClient();
 await paginate(prisma.user)(
