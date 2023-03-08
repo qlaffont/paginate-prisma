@@ -29,6 +29,8 @@ await paginate(prisma.user)(
 );
 ```
 
+For type-graphql integration, check example/type.ts
+
 ## API
 
 ### paginate(prismaModel)(query, sortingOptions, additionalFindMany)
