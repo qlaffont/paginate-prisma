@@ -20,7 +20,7 @@ specifiers:
   graphql: ^16.6.0
   husky: 8.0.3
   lodash: ^4.17.21
-  prettier: 2.8.4
+  prettier: 2.8.5
   prisma: ^4.9.0
   reflect-metadata: ^0.1.13
   size-limit: 8.2.4
@@ -44,11 +44,11 @@ devDependencies:
   eslint: 8.36.0
   eslint-config-prettier: 8.7.0_eslint@8.36.0
   eslint-plugin-import: 2.27.5_a7er6olmtneep4uytpot6gt7wu
-  eslint-plugin-prettier: 4.2.1_eqzx3hpkgx5nnvxls3azrcc7dm
+  eslint-plugin-prettier: 4.2.1_e4jq4ivnnnwcsomlcyj2qoljy4
   eslint-plugin-simple-import-sort: 10.0.0_eslint@8.36.0
   graphql: 16.6.0
   husky: 8.0.3
-  prettier: 2.8.4
+  prettier: 2.8.5
   prisma: 4.9.0
   reflect-metadata: 0.1.13
   size-limit: 8.2.4
@@ -4162,7 +4162,7 @@ packages:
       prettier-linter-helpers: 1.0.0
     dev: true
 
-  /eslint-plugin-prettier/4.2.1_eqzx3hpkgx5nnvxls3azrcc7dm:
+  /eslint-plugin-prettier/4.2.1_e4jq4ivnnnwcsomlcyj2qoljy4:
     resolution: {integrity: sha512-f/0rXLXUt0oFYs8ra4w49wYZBG5GKZpAYsJSm6rnYL5uVDjd+zowwMwVZHnAjf4edNrKpCDYfXDgmRE/Ak7QyQ==}
     engines: {node: '>=12.0.0'}
     peerDependencies:
@@ -4175,7 +4175,7 @@ packages:
     dependencies:
       eslint: 8.36.0
       eslint-config-prettier: 8.7.0_eslint@8.36.0
-      prettier: 2.8.4
+      prettier: 2.8.5
       prettier-linter-helpers: 1.0.0
     dev: true
 
@@ -6938,8 +6938,8 @@ packages:
     hasBin: true
     dev: true
 
-  /prettier/2.8.4:
-    resolution: {integrity: sha512-vIS4Rlc2FNh0BySk3Wkd6xmwxB0FpOndW5fisM5H8hsZSxU2VWVB5CWIkIjWvrHjIhxk2g3bfMKM87zNTrZddw==}
+  /prettier/2.8.5:
+    resolution: {integrity: sha512-3gzuxrHbKUePRBB4ZeU08VNkUcqEHaUaouNt0m7LGP4Hti/NuB07C7PPTM/LkWqXoJYJn2McEo5+kxPNrtQkLQ==}
     engines: {node: '>=10.13.0'}
     hasBin: true
     dev: true
