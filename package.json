@@ -85,7 +85,7 @@
     "tsdx": "0.14.1",
     "tslib": "2.5.3",
     "typescript": "5.0.4",
-    "wds": "0.16.0"
+    "wds": "0.17.1"
   },
   "dependencies": {
     "@types/lodash": "^4.14.191",
