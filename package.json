@@ -84,7 +84,7 @@
     "size-limit": "8.2.4",
     "tsdx": "0.14.1",
     "tslib": "2.5.3",
-    "typescript": "5.0.4",
+    "typescript": "5.1.3",
     "wds": "0.17.1"
   },
   "dependencies": {
