@@ -66,7 +66,7 @@ export const getPaginationsData = <T>(options: PaginationOptions<T> = {}) =>
   ({
     page: options.page || 1,
     limit: options.limit || 10,
-  } as { page: number; limit: number });
+  }) as { page: number; limit: number };
 
 export const paginate =
   <T>(prismaModel: T) =>
