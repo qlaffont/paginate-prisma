@@ -80,8 +80,8 @@ devDependencies:
     specifier: 4.9.5
     version: 4.9.5
   wds:
-    specifier: 0.17.2
-    version: 0.17.2
+    specifier: 0.17.3
+    version: 0.17.3
 
 packages:
 
@@ -8424,8 +8424,8 @@ packages:
       defaults: 1.0.3
     dev: true
 
-  /wds@0.17.2:
-    resolution: {integrity: sha512-0pREv/Q0+rX0ESTaymwRSRKKQKEpPpWuilzm1OjA/mCxBrolktS/+m5rhg+/9K4XNDLestzAqUyrDFNQK3Zk7w==}
+  /wds@0.17.3:
+    resolution: {integrity: sha512-XqifSAR74vTa+gY5JM6h47K1VEzhfNajxrO+Fkd+NZOe8vRV+0zgxJ5FpV7Io8JiswDODYiIsmyEbJYXEAqwHA==}
     engines: {node: '>=16.0.0'}
     hasBin: true
     dependencies:
