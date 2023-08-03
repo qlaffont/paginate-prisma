@@ -78,7 +78,7 @@
     "eslint-plugin-simple-import-sort": "10.0.0",
     "graphql": "^16.6.0",
     "husky": "8.0.3",
-    "prettier": "3.0.0",
+    "prettier": "3.0.1",
     "prisma": "^5.0.0",
     "reflect-metadata": "^0.1.13",
     "size-limit": "8.2.6",
