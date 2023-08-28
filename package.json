@@ -33,14 +33,14 @@
     "trailingComma": "es5"
   },
   "name": "paginate-prisma",
-  "author": "flexper",
+  "author": "qlaffont",
   "repository": {
     "type": "git",
-    "url": "https://github.com/flexper/paginate-prisma.git"
+    "url": "https://github.com/qlaffont/paginate-prisma.git"
   },
   "bugs": {
-    "url": "https://github.com/flexper/paginate-prisma/issues",
-    "email": "contact@flexper.fr"
+    "url": "https://github.com/qlaffont/paginate-prisma/issues",
+    "email": "contact@qlaffont.com"
   },
   "module": "dist/paginate-prisma.esm.js",
   "size-limit": [
