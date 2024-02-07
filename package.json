@@ -80,7 +80,7 @@
     "husky": "8.0.3",
     "prettier": "3.0.2",
     "prisma": "^5.0.0",
-    "reflect-metadata": "^0.1.13",
+    "reflect-metadata": "^0.2.0",
     "size-limit": "8.2.6",
     "tsdx": "0.14.1",
     "tslib": "2.6.2",
