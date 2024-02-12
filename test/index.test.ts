@@ -4,6 +4,11 @@
 
 import 'reflect-metadata';
 
+//Polyfill for issue with github
+global.atob = (a) => Buffer.from(a, 'base64').toString('binary');
+
+global.btoa = (b) => Buffer.from(b).toString('base64');
+
 import { afterAll, beforeAll } from '@jest/globals';
 import { describe, expect, it } from '@jest/globals';
 
