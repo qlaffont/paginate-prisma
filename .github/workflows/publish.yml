@@ -95,7 +95,7 @@ jobs:
           git push --follow-tags origin main
 
       - if: steps.changes.outputs.src == 'true'
-        uses: JS-DevTools/npm-publish@v2
+        uses: JS-DevTools/npm-publish@v3
         with:
           token: ${{ secrets.NPM_TOKEN }}
 
