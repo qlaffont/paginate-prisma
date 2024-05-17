@@ -27,7 +27,7 @@ devDependencies:
     version: 5.14.0(prisma@5.14.0)
   '@size-limit/preset-small-lib':
     specifier: 11.1.4
-    version: 11.1.4(size-limit@11.1.3)
+    version: 11.1.4(size-limit@11.1.4)
   '@types/node':
     specifier: 20.12.12
     version: 20.12.12
@@ -68,8 +68,8 @@ devDependencies:
     specifier: ^0.2.1
     version: 0.2.2
   size-limit:
-    specifier: 11.1.3
-    version: 11.1.3
+    specifier: 11.1.4
+    version: 11.1.4
   tsdx:
     specifier: 0.14.1
     version: 0.14.1(@types/node@20.12.12)
@@ -2111,7 +2111,7 @@ packages:
       '@sinonjs/commons': 3.0.1
     dev: true
 
-  /@size-limit/esbuild@11.1.4(size-limit@11.1.3):
+  /@size-limit/esbuild@11.1.4(size-limit@11.1.4):
     resolution: {integrity: sha512-Nxh+Fw4Z7sFjRLeT7GDZIy297VXyJrMvG20UDSWP31QgglriEBDkW9U77T7W6js5FaEr89bYVrGzpHfmE1CLFw==}
     engines: {node: ^18.0.0 || >=20.0.0}
     peerDependencies:
@@ -2119,26 +2119,26 @@ packages:
     dependencies:
       esbuild: 0.21.3
       nanoid: 5.0.7
-      size-limit: 11.1.3
+      size-limit: 11.1.4
     dev: true
 
-  /@size-limit/file@11.1.4(size-limit@11.1.3):
+  /@size-limit/file@11.1.4(size-limit@11.1.4):
     resolution: {integrity: sha512-QxnGj9cxhCEuqMAV01gqonXIKcc+caZqFHZpV51oL2ZJNGSPP9Q/yyf+7HbVe00faOFd1dZZwMwzZmX7HQ9LbA==}
     engines: {node: ^18.0.0 || >=20.0.0}
     peerDependencies:
       size-limit: 11.1.4
     dependencies:
-      size-limit: 11.1.3
+      size-limit: 11.1.4
     dev: true
 
-  /@size-limit/preset-small-lib@11.1.4(size-limit@11.1.3):
+  /@size-limit/preset-small-lib@11.1.4(size-limit@11.1.4):
     resolution: {integrity: sha512-wELW374esv+2Nlzf7g+qW4Af9L69duLoO9F52f0sGk/nzb6et7u8gLRvweWrBfm3itUrqHCpGSSVabTsIU8kNw==}
     peerDependencies:
       size-limit: 11.1.4
     dependencies:
-      '@size-limit/esbuild': 11.1.4(size-limit@11.1.3)
-      '@size-limit/file': 11.1.4(size-limit@11.1.3)
-      size-limit: 11.1.3
+      '@size-limit/esbuild': 11.1.4(size-limit@11.1.4)
+      '@size-limit/file': 11.1.4(size-limit@11.1.4)
+      size-limit: 11.1.4
     dev: true
 
   /@swc/core-darwin-arm64@1.4.0:
@@ -6619,7 +6619,7 @@ packages:
   /nanospinner@1.1.0:
     resolution: {integrity: sha512-yFvNYMig4AthKYfHFl1sLj7B2nkHL4lzdig4osvl9/LdGbXwrdFRoqBS98gsEsOakr0yH+r5NZ/1Y9gdVB8trA==}
     dependencies:
-      picocolors: 1.0.0
+      picocolors: 1.0.1
     dev: true
 
   /natural-compare@1.4.0:
@@ -6975,6 +6975,10 @@ packages:
 
   /picocolors@1.0.0:
     resolution: {integrity: sha512-1fygroTLlHu66zi26VoTDv8yRgm0Fccecssto+MhsZ0D/DGW2sm8E8AjW7NU5VVTRt5GxbeZ5qBuJr+HyLYkjQ==}
+    dev: true
+
+  /picocolors@1.0.1:
+    resolution: {integrity: sha512-anP1Z8qwhkbmu7MFP5iTt+wQKXgwzf7zTyGlcdzabySa9vd0Xt392U0rVmz9poOaBj0uHJKyyo9/upk0HrEQew==}
     dev: true
 
   /picomatch@2.3.1:
@@ -7692,8 +7696,8 @@ packages:
     resolution: {integrity: sha512-bLGGlR1QxBcynn2d5YmDX4MGjlZvy2MRBDRNHLJ8VI6l6+9FUiyTFNJ0IveOSP0bcXgVDPRcfGqA0pjaqUpfVg==}
     dev: true
 
-  /size-limit@11.1.3:
-    resolution: {integrity: sha512-MSbQGmiiWPrEP1bXZKoWjeqq35GkqQz6FpgStIDES3QdXIZ34AQWKnP/QvLGTyDd6kTSfVFGSuJb1su9IGhZoQ==}
+  /size-limit@11.1.4:
+    resolution: {integrity: sha512-V2JAI/Z7h8sEuxU3V+Ig3XKA5FcYbI4CZ7sh6s7wvuy+TUwDZYqw7sAqrHhQ4cgcNfPKIAHAaH8VaqOdbcwJDA==}
     engines: {node: ^18.0.0 || >=20.0.0}
     hasBin: true
     dependencies:
@@ -7703,7 +7707,7 @@ packages:
       jiti: 1.21.0
       lilconfig: 3.1.1
       nanospinner: 1.1.0
-      picocolors: 1.0.0
+      picocolors: 1.0.1
     dev: true
 
   /slash@3.0.0:
