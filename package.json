@@ -15,9 +15,6 @@
     "build": "tsdx build",
     "test": "tsdx test",
     "lint": "eslint src test --fix",
-    "size": "size-limit",
-    "analyze": "size-limit --why",
-    "np": "np",
     "prisma:deploy": "prisma migrate deploy",
     "prisma:generate": "prisma generate"
   },
@@ -43,16 +40,6 @@
     "email": "contact@qlaffont.com"
   },
   "module": "dist/paginate-prisma.esm.js",
-  "size-limit": [
-    {
-      "path": "dist/paginate-prisma.cjs.production.min.js",
-      "limit": "10 KB"
-    },
-    {
-      "path": "dist/paginate-prisma.esm.js",
-      "limit": "10 KB"
-    }
-  ],
   "jest": {
     "collectCoverage": true,
     "coverageReporters": [
@@ -67,7 +54,6 @@
   "devDependencies": {
     "@jest/globals": "29.7.0",
     "@prisma/client": "^5.9.1",
-    "@size-limit/preset-small-lib": "11.1.4",
     "@types/node": "20.14.10",
     "@typescript-eslint/eslint-plugin": "7.16.0",
     "@typescript-eslint/parser": "7.16.0",
@@ -81,7 +67,6 @@
     "prettier": "3.3.3",
     "prisma": "^5.9.1",
     "reflect-metadata": "^0.2.1",
-    "size-limit": "11.1.4",
     "tsdx": "0.14.1",
     "tslib": "2.6.3",
     "typescript": "5.5.3",
@@ -91,5 +76,6 @@
     "@types/lodash": "^4.14.202",
     "class-validator": "^0.14.1",
     "lodash": "^4.17.21"
-  }
+  },
+  "packageManager": "pnpm@8.15.8+sha512.d1a029e1a447ad90bc96cd58b0fad486d2993d531856396f7babf2d83eb1823bb83c5a3d0fc18f675b2d10321d49eb161fece36fe8134aa5823ecd215feed392"
 }
