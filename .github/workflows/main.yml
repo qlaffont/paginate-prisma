@@ -7,7 +7,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        node: ["18.x"]
+        node: ["20.x"]
         os: [ubuntu-latest]
 
     services:
@@ -73,7 +73,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: "17"
+          node-version: "20"
       - uses: pnpm/action-setup@v4.0.0
       - name: Install deps and build (with cache)
         run: pnpm install --no-frozen-lockfile
