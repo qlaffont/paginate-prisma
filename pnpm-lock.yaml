@@ -26,7 +26,7 @@ importers:
         version: 29.7.0
       '@prisma/client':
         specifier: ^6.0.0
-        version: 6.0.1(prisma@6.1.0)
+        version: 6.1.0(prisma@6.1.0)
       '@types/node':
         specifier: 20.14.10
         version: 20.14.10
@@ -912,8 +912,8 @@ packages:
     resolution: {integrity: sha512-cq8o4cWH0ibXh9VGi5P20Tu9XF/0fFXl9EUinr9QfTM7a7p0oTA4iJRCQWppXR1Pg8dSM0UCItCkPwsk9qWWYA==}
     engines: {node: ^12.20.0 || ^14.18.0 || >=16.0.0}
 
-  '@prisma/client@6.0.1':
-    resolution: {integrity: sha512-60w7kL6bUxz7M6Gs/V+OWMhwy94FshpngVmOY05TmGD0Lhk+Ac0ZgtjlL6Wll9TD4G03t4Sq1wZekNVy+Xdlbg==}
+  '@prisma/client@6.1.0':
+    resolution: {integrity: sha512-AbQYc5+EJKm1Ydfq3KxwcGiy7wIbm4/QbjCKWWoNROtvy7d6a3gmAGkKjK0iUCzh+rHV8xDhD5Cge8ke/kiy5Q==}
     engines: {node: '>=18.18'}
     peerDependencies:
       prisma: '*'
@@ -5315,7 +5315,10 @@ snapshots:
       jest-runner: 25.5.4
       jest-runtime: 25.5.4
     transitivePeerDependencies:
+      - bufferutil
+      - canvas
       - supports-color
+      - utf-8-validate
 
   '@jest/transform@25.5.1':
     dependencies:
@@ -5447,7 +5450,7 @@ snapshots:
 
   '@pkgr/core@0.1.1': {}
 
-  '@prisma/client@6.0.1(prisma@6.1.0)':
+  '@prisma/client@6.1.0(prisma@6.1.0)':
     optionalDependencies:
       prisma: 6.1.0
 
@@ -6592,7 +6595,7 @@ snapshots:
     dependencies:
       eslint: 8.57.0
 
-  eslint-config-react-app@5.2.1(@typescript-eslint/eslint-plugin@2.34.0(@typescript-eslint/parser@2.34.0(eslint@6.8.0)(typescript@5.5.3))(eslint@6.8.0)(typescript@5.5.3))(@typescript-eslint/parser@2.34.0(eslint@6.8.0)(typescript@5.5.3))(babel-eslint@10.1.0(eslint@8.57.0))(eslint-plugin-flowtype@3.13.0(eslint@6.8.0))(eslint-plugin-import@2.29.1(@typescript-eslint/parser@7.16.0(eslint@8.57.0)(typescript@5.5.3))(eslint@8.57.0))(eslint-plugin-jsx-a11y@6.8.0(eslint@6.8.0))(eslint-plugin-react-hooks@2.5.1(eslint@6.8.0))(eslint-plugin-react@7.33.2(eslint@6.8.0))(eslint@6.8.0)(typescript@5.5.3):
+  eslint-config-react-app@5.2.1(@typescript-eslint/eslint-plugin@2.34.0(@typescript-eslint/parser@2.34.0(eslint@6.8.0)(typescript@5.5.3))(eslint@6.8.0)(typescript@5.5.3))(@typescript-eslint/parser@2.34.0(eslint@6.8.0)(typescript@5.5.3))(babel-eslint@10.1.0(eslint@6.8.0))(eslint-plugin-flowtype@3.13.0(eslint@6.8.0))(eslint-plugin-import@2.29.1(@typescript-eslint/parser@7.16.0(eslint@8.57.0)(typescript@5.5.3))(eslint@8.57.0))(eslint-plugin-jsx-a11y@6.8.0(eslint@6.8.0))(eslint-plugin-react-hooks@2.5.1(eslint@6.8.0))(eslint-plugin-react@7.33.2(eslint@6.8.0))(eslint@6.8.0)(typescript@5.5.3):
     dependencies:
       '@typescript-eslint/eslint-plugin': 2.34.0(@typescript-eslint/parser@2.34.0(eslint@6.8.0)(typescript@5.5.3))(eslint@6.8.0)(typescript@5.5.3)
       '@typescript-eslint/parser': 2.34.0(eslint@6.8.0)(typescript@5.5.3)
@@ -7734,10 +7737,7 @@ snapshots:
       pretty-format: 25.5.0
       throat: 5.0.0
     transitivePeerDependencies:
-      - bufferutil
-      - canvas
       - supports-color
-      - utf-8-validate
 
   jest-leak-detector@25.5.0:
     dependencies:
@@ -9282,7 +9282,7 @@ snapshots:
       enquirer: 2.4.1
       eslint: 6.8.0
       eslint-config-prettier: 6.15.0(eslint@6.8.0)
-      eslint-config-react-app: 5.2.1(@typescript-eslint/eslint-plugin@2.34.0(@typescript-eslint/parser@2.34.0(eslint@6.8.0)(typescript@5.5.3))(eslint@6.8.0)(typescript@5.5.3))(@typescript-eslint/parser@2.34.0(eslint@6.8.0)(typescript@5.5.3))(babel-eslint@10.1.0(eslint@8.57.0))(eslint-plugin-flowtype@3.13.0(eslint@6.8.0))(eslint-plugin-import@2.29.1(@typescript-eslint/parser@7.16.0(eslint@8.57.0)(typescript@5.5.3))(eslint@8.57.0))(eslint-plugin-jsx-a11y@6.8.0(eslint@6.8.0))(eslint-plugin-react-hooks@2.5.1(eslint@6.8.0))(eslint-plugin-react@7.33.2(eslint@6.8.0))(eslint@6.8.0)(typescript@5.5.3)
+      eslint-config-react-app: 5.2.1(@typescript-eslint/eslint-plugin@2.34.0(@typescript-eslint/parser@2.34.0(eslint@6.8.0)(typescript@5.5.3))(eslint@6.8.0)(typescript@5.5.3))(@typescript-eslint/parser@2.34.0(eslint@6.8.0)(typescript@5.5.3))(babel-eslint@10.1.0(eslint@6.8.0))(eslint-plugin-flowtype@3.13.0(eslint@6.8.0))(eslint-plugin-import@2.29.1(@typescript-eslint/parser@7.16.0(eslint@8.57.0)(typescript@5.5.3))(eslint@8.57.0))(eslint-plugin-jsx-a11y@6.8.0(eslint@6.8.0))(eslint-plugin-react-hooks@2.5.1(eslint@6.8.0))(eslint-plugin-react@7.33.2(eslint@6.8.0))(eslint@6.8.0)(typescript@5.5.3)
       eslint-plugin-flowtype: 3.13.0(eslint@6.8.0)
       eslint-plugin-import: 2.29.1(@typescript-eslint/parser@2.34.0(eslint@6.8.0)(typescript@5.5.3))(eslint@6.8.0)
       eslint-plugin-jsx-a11y: 6.8.0(eslint@6.8.0)
