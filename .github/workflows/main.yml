@@ -34,7 +34,7 @@ jobs:
           node-version: ${{ matrix.node }}
 
       - name: Install PNPM
-        uses: pnpm/action-setup@v4.0.0
+        uses: pnpm/action-setup@v4.1.0
 
       - name: Install deps and build (with cache)
         run: pnpm install --no-frozen-lockfile
@@ -74,7 +74,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "20"
-      - uses: pnpm/action-setup@v4.0.0
+      - uses: pnpm/action-setup@v4.1.0
       - name: Install deps and build (with cache)
         run: pnpm install --no-frozen-lockfile
       - run: pnpm prisma:generate
