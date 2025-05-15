@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 1.0.332 (2025-05-15)
+
+
+### Bug Fixes
+
+* **deps:** update dependency class-validator to v0.14.2 ([#403](https://github.com/qlaffont/paginate-prisma/issues/403)) ([fd3cb12](https://github.com/qlaffont/paginate-prisma/commit/fd3cb1297581529336773a3ab676010a8f8b65da))
+
 ### 1.0.331 (2025-04-26)
 
 ### 1.0.330 (2025-03-11)
