@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 1.0.334 (2025-06-18)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @types/lodash to v4.17.18 ([#407](https://github.com/qlaffont/paginate-prisma/issues/407)) ([8b77016](https://github.com/qlaffont/paginate-prisma/commit/8b77016550fac97183399a022d72916fdb5f7e39))
+
 ### 1.0.333 (2025-05-20)
 
 
